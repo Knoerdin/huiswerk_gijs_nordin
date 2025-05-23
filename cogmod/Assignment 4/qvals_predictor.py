@@ -6,7 +6,7 @@ def name():
 
 q_vals = None
 
-def play(n_round, own_prev_moves, other_prev_moves, total_rounds, alpha=0.5):
+def play(n_round, own_prev_moves, other_prev_moves, total_rounds, alpha=0.6):
     global q_vals
     if n_round == 0:
         # First move
@@ -19,10 +19,10 @@ def play(n_round, own_prev_moves, other_prev_moves, total_rounds, alpha=0.5):
         state = get_state(own_prev_moves[-1], other_prev_moves[-1])
         prev_state = get_state(own_prev_moves[-2], other_prev_moves[-2])
         q_vals = calculate_qvals(q_vals, state, prev_state, other_prev_moves, alpha)
-        print('Q-values:', q_vals)
+        # print('Q-values:', q_vals)
         other_action, certainty = predict_action(q_vals, state)
         action = find_best_move(other_action, certainty)
-        print('State:', state, 'Action:', action, 'Certainty:', certainty, 'Prediction:', other_action, 'True opp move:', other_prev_moves[-1], 'Own move:', own_prev_moves[-1])
+        # print('State:', state, 'Action:', action, 'Certainty:', certainty, 'Prediction:', other_action, 'True opp move:', other_prev_moves[-1], 'Own move:', own_prev_moves[-1])
         return action
 
 def find_best_move(other_action, certainty):
